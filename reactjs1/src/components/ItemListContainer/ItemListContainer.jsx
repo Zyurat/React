@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { gFetch } from "./helper/gFetch";
+import { gFetch } from "../helper/gFetch";
 //* .then 
 
 const ItemListContainer = ({ greeting }) => {

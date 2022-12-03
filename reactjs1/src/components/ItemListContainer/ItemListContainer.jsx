@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { gFetch } from "../helper/gFetch";
+
 //* .then 
 
 const ItemListContainer = ({ greeting }) => {
@@ -18,15 +19,47 @@ const ItemListContainer = ({ greeting }) => {
     cambiarValorCount(count+1)
   }
   return (
-      <div>
-        {loading ? <h1>Cargando</h1> :
-        products.map(product=><li key={product.id}>{product.name}</li>)}
+      <section className="ItemListContainer">
         <p className="alert alert-danger">{count}</p>
         <p className='btn btn-outline-primary' onClick={handleContador}>Clickeame!</p>
         <h2>{greeting}</h2>
-      </div>
-  );
-;
+        {   loading ? 
+                  <h1>Cargando...</h1> 
+              :
+                  products.map( product =>    <div            
+                                                  style={{ marginLeft: 100}}
+                                                  className='col-md-3'
+                                                  key={product.id}
+                                              >    
+                                                  <div 
+                                                  className="card w-100 mt-5" 
+                                                  >
+                                                    <div 
+                                                    className="card-header"
+                                                    >
+                                                      {`${product.name} - ${product.category}`}
+                                                      </div>
+                                                      <div className="card-body">
+                                                          <img src={product.picture} alt='' className='w-100' /> <br/>
+                                                          <span>Precio: {product.price}</span> <br/>
+                                                          <span>Stock:  {product.stock}</span>                                                         
+                                                      </div>
+                                              
+                                                      <div className="card-footer">                                                        
+                                                          <button className="btn btn-outline-primary btn-block">
+                                                          <span>Detalles</span>
+                                                          </button>
+                                                      </div>
+                                                  </div>
+                                                  
+                                              </div> 
+                      ) 
+          }            
+      
+      </section>
+  )
 }
+
+
 
 export default ItemListContainer;
